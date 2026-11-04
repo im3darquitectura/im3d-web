@@ -59,7 +59,7 @@ def paras_html(paras, highlight=True):
         size = None
         if "|" in p and re.match(r"^\d+px\|", p):
             size, p = p.split("|", 1)
-        txt = md_inline(p.strip())
+        txt = md_inline(p.strip()).replace("  ", "&nbsp;&nbsp;&nbsp;")
         cls = ""
         if size == "28px":
             cls = ' class="titulo"'
