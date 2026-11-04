@@ -1,0 +1,46 @@
+name: Descargar imágenes desde Portfoliobox
+
+# Se ejecuta una sola vez, a mano, desde la pestaña "Actions" del repositorio.
+# Descarga todas las imágenes listadas en imagenes.txt, las reduce a máx. 2400 px
+# de ancho (calidad 85) y las guarda en la carpeta img/ del repositorio.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  descargar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalar ImageMagick
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq imagemagick
+
+      - name: Descargar y optimizar
+        run: |
+          set -e
+          mkdir -p img
+          fallidas=0
+          while IFS=$'\t' read -r local url; do
+            [ -z "$local" ] && continue
+            if [ -s "$local" ]; then continue; fi
+            echo "→ $local"
+            if ! curl -fsSL --retry 3 -A "Mozilla/5.0" -o "$local" "$url"; then
+              echo "   ✗ no se pudo descargar $url"; fallidas=$((fallidas+1)); rm -f "$local"; continue
+            fi
+            case "$local" in
+              *.jpg|*.jpeg) mogrify -resize '2400x2400>' -quality 85 -strip "$local" ;;
+            esac
+          done < imagenes.txt
+          echo "Imágenes fallidas: $fallidas"
+          du -sh img
+
+      - name: Guardar en el repositorio
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add img
+          git commit -m "Imágenes descargadas desde Portfoliobox" || echo "Nada que guardar"
+          git push
