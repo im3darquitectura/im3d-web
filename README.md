@@ -42,7 +42,7 @@ La propagación de DNS puede tardar entre minutos y 24 h.
 
 ## 4. Formulario de contacto
 
-GitHub Pages no procesa formularios. El formulario usa **FormSubmit** (gratis, sin registro):
+GitHub Pages no procesa formularios. El formulario usa **Web3Forms** (gratis):
 envía los mensajes a `s.vallejo@im3darquitectura.com`. La **primera vez** que alguien envíe
 el formulario, FormSubmit manda un correo de activación a esa dirección: hay que hacer clic
 en "Activate" una sola vez.

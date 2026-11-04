@@ -33,11 +33,12 @@
 <hr>
 <p>Teléfono:&nbsp;&nbsp;&nbsp;+ 57&nbsp;&nbsp;&nbsp;310 697 13 65</p>
 <p>Correo: s.vallejo@im3darquitectura.com</p></div>
-<form class="formulario" action="https://formsubmit.co/s.vallejo@im3darquitectura.com" method="POST">
-  <input type="hidden" name="_subject" value="Mensaje desde www.im3darquitectura.com">
-  <input type="hidden" name="_next" value="https://www.im3darquitectura.com/contacto/?enviado=1">
-  <input type="hidden" name="_captcha" value="false">
-  <input type="text" name="_honey" style="display:none">
+<form class="formulario" action="https://api.web3forms.com/submit" method="POST">
+  <input type="hidden" name="access_key" value="31324569-55df-45b6-b777-4a7f4f8c6228">
+  <input type="hidden" name="subject" value="Mensaje desde www.im3darquitectura.com">
+  <input type="hidden" name="from_name" value="IM3D Arquitectura - Sitio web">
+  <input type="hidden" name="redirect" value="https://www.im3darquitectura.com/contacto/?enviado=1">
+  <input type="checkbox" name="botcheck" class="oculto" tabindex="-1" autocomplete="off">
   <label>Nombre<input type="text" name="nombre" required></label><label>Correo Electrónico<input type="email" name="correoelectrnico" required></label><label>Celular<input type="tel" name="celular" required></label><label>Mensaje<textarea name="mensaje" rows="6" required></textarea></label>
   <button type="submit">Enviar</button>
   <p class="form-ok" hidden>Gracias, tu mensaje fue enviado.</p>

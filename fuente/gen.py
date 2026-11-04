@@ -162,11 +162,12 @@ def render_sections(uri, page):
             next_url = f"https://{DOMAIN}/{uri}/?enviado=1"
             parts.append(f"""<section class="contacto">
 <div class="contacto-texto">{txt}</div>
-<form class="formulario" action="https://formsubmit.co/s.vallejo@im3darquitectura.com" method="POST">
-  <input type="hidden" name="_subject" value="Mensaje desde {DOMAIN}">
-  <input type="hidden" name="_next" value="{next_url}">
-  <input type="hidden" name="_captcha" value="false">
-  <input type="text" name="_honey" style="display:none">
+<form class="formulario" action="https://api.web3forms.com/submit" method="POST">
+  <input type="hidden" name="access_key" value="31324569-55df-45b6-b777-4a7f4f8c6228">
+  <input type="hidden" name="subject" value="Mensaje desde {DOMAIN}">
+  <input type="hidden" name="from_name" value="IM3D Arquitectura - Sitio web">
+  <input type="hidden" name="redirect" value="{next_url}">
+  <input type="checkbox" name="botcheck" class="oculto" tabindex="-1" autocomplete="off">
   {''.join(fields)}
   <button type="submit">{s.get('btn','Enviar')}</button>
   <p class="form-ok" hidden>{'Thank you, your message was sent.' if lang=='en' else 'Gracias, tu mensaje fue enviado.'}</p>
