@@ -84,7 +84,7 @@ a { color: inherit; text-decoration: none; }
 
 /* ---------- Contacto ---------- */
 .contacto {
-  background: var(--oscuro);
+  background: var(--oscuro) center / cover no-repeat;
   padding: 129px 3% 90px;
   display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
   min-height: calc(100vh - var(--cabecera));

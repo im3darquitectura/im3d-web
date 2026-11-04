@@ -160,7 +160,7 @@ def render_sections(uri, page):
                     fields.append(f'<label>{html.escape(label)}<input type="{ftype}" name="{name}" required></label>')
             lang = lang_of(uri)
             next_url = f"https://{DOMAIN}/{uri}/?enviado=1"
-            parts.append(f"""<section class="contacto">
+            parts.append(f"""<section class="contacto" style="background-image:url({img('contacto-fondo.jpg')})">
 <div class="contacto-texto">{txt}</div>
 <form class="formulario" action="https://api.web3forms.com/submit" method="POST">
   <input type="hidden" name="access_key" value="31324569-55df-45b6-b777-4a7f4f8c6228">
