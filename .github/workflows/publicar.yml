@@ -1,0 +1,42 @@
+name: Publicar en GitHub Pages
+
+# Publica el sitio cada vez que cambia algo en la rama main,
+# y también después de que termine la descarga de imágenes.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Descargar imágenes desde Portfoliobox"]
+    types: [completed]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Configurar Pages (la primera vez la activa)
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - name: Empaquetar el sitio
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - name: Publicar
+        id: deployment
+        uses: actions/deploy-pages@v4
